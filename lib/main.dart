@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flash_chat/screens/chat_screen.dart';
 import 'package:flash_chat/screens/login_screen.dart';
 import 'package:flash_chat/screens/registration_screen.dart';
@@ -11,7 +12,11 @@ Map<String, WidgetBuilder> routes = {
   LoginScreen.simpleName: (context) => LoginScreen(),
   RegistrationScreen.simpleName: (context) => RegistrationScreen(),
 };
-void main() => runApp(FlashChat());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(FlashChat());
+}
 
 class FlashChat extends StatelessWidget {
   @override
